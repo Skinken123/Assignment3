@@ -1,4 +1,7 @@
 // ArrayNumberSequence.java
+
+import java.util.Arrays;
+
 /****************************************************************
 ArrayNumberSequence represents a sequence of real numbers.
 Such a sequence is defined by the interface NumberSequence.
@@ -65,9 +68,9 @@ public class ArrayNumberSequence implements NumberSequence
     // The method throws IndexOutOfBoundsException if the position is wrong.
     public double numberAt (int position) throws IndexOutOfBoundsException
     {
-        if (position>numbers.length)
+         if (position < 0 || position > numbers.length)
         {
-            throw new IndexOutOfBoundsException("Position does not exist in current sequence");
+            throw new IndexOutOfBoundsException("Invalid position");
         }
         double indexNumber = numbers[position];
         return indexNumber;
@@ -150,17 +153,39 @@ public class ArrayNumberSequence implements NumberSequence
         return contains;
     }
 
-    // add adds the specified number to the end of this sequence.
+    // add adds the specified number to the end of this array sequence.
     public void add (double number)
     {
-        
+        double[] newNumbers = new double[numbers.length +1];
+        System.arraycopy(numbers, 0, newNumbers, 0, numbers.length);
+        newNumbers[numbers.length] = number;
+        numbers = newNumbers;
     }
 
-    // insert inserts the given number at the specified position in this sequence.
+    // insert inserts the given number at the specified position in this array sequence.
     // The method throws IndexOutOfBoundsException if the position is wrong.
     public void insert (int position, double number) throws IndexOutOfBoundsException
     {
+        if (position < 0 || position > numbers.length)
+        {
+            throw new IndexOutOfBoundsException("Invalid position");
+        }
 
+        double[] newNumbers = new double[numbers.length + 1];
+
+        for (int i = 0; i < position; i++)
+        {
+            newNumbers[i] = numbers[i];
+        }
+
+        newNumbers[position] = number;
+
+        for (int i = position; i < numbers.length; i++)
+        {
+            newNumbers[i + 1] = numbers[i];
+        }
+
+        numbers = newNumbers;
     }
 
     // removeAt removes the number at the specified position in this sequence.
@@ -168,26 +193,47 @@ public class ArrayNumberSequence implements NumberSequence
     // The method throws IllegalStateException if there are just two numbers in the sequence.
     public void removeAt (int position) throws IndexOutOfBoundsException, IllegalStateException
     {
+        if (position < 0 || position > numbers.length)
+        {
+            throw new IndexOutOfBoundsException("Invalid position");
+        }
+         if (numbers.length <= 2)
+        {
+            throw new IllegalStateException("not a sequence");
+        }
+        
+        double[] newNumbers = new double[numbers.length-1];
+        for (int i = 0; i < position; i++)
+        {
+            newNumbers[i] = numbers[i];
+        }
+        for (int i = position; i < numbers.length-1; i++)
+        {
+            newNumbers[i] = numbers[i+1];
+        }
 
+        numbers = newNumbers;
     }
 
     // asArray returns an array containing all of the numbers in this sequence, in the same order as in the sequence.
     public double[] asArray ()
     {
-        return d;
+      double[] newNumbers = Arrays.copyOf(numbers, numbers.length);
+      return newNumbers;
     }
 
-    // toString returns the character string representing this
-    // sequence
+    // toString returns the character string representing this sequence
     public String toString ()
     {
         String s = "";
-        for (int i = 0; i < numbers.length - 1; i++)
+        String s2;
+        for (int i = 0; i < numbers.length; i++)
         {
             s = s + numbers[i] + ", ";
-            s = s + numbers[numbers.length - 1];
+          //  s = s + numbers[numbers.length - 1];
         }
-        return s;
+        s2 = s.substring(0,s.length()-2);
+        return s2;
     }
     // add code here
 }
