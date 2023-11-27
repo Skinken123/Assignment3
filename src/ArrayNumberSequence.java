@@ -1,7 +1,5 @@
 // ArrayNumberSequence.java
 
-import java.util.Arrays;
-
 /****************************************************************
 ArrayNumberSequence represents a sequence of real numbers.
 Such a sequence is defined by the interface NumberSequence.
@@ -218,8 +216,9 @@ public class ArrayNumberSequence implements NumberSequence
     // asArray returns an array containing all of the numbers in this sequence, in the same order as in the sequence.
     public double[] asArray ()
     {
-      double[] newNumbers = Arrays.copyOf(numbers, numbers.length);
-      return newNumbers;
+        double[] newNumbers = new double[numbers.length];
+        System.arraycopy(numbers, 0, newNumbers, 0, numbers.length);
+        return newNumbers;
     }
 
     // toString returns the character string representing this sequence
