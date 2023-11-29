@@ -234,5 +234,4 @@ public class ArrayNumberSequence implements NumberSequence
         s2 = s.substring(0,s.length()-2);
         return s2;
     }
-    // add code here
 }

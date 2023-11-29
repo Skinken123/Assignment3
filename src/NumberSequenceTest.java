@@ -12,8 +12,8 @@ class NumberSequenceTest
     {
         double[] realNumbers = {8.0, 2.0, 16.0, 5.0, 1.0, 12.0, 4.0};
         NumberSequence sequence = null;
-        sequence = new ArrayNumberSequence(realNumbers);
-        // sequence = new LinkedNumberSequence(realNumbers);
+        //sequence = new ArrayNumberSequence(realNumbers);
+        sequence = new LinkedNumberSequence(realNumbers);
         out.println("the sequence:");
         out.println(sequence.toString());
         out.println();
@@ -45,9 +45,8 @@ class NumberSequenceTest
         out.println(sequence.toString());
         out.println();
 
-        double[] newArray = sequence.asArray();
         out.println("corresponding array:");
-        System.out.println(newArray);
+        System.out.println(sequence);
     }
 }
 
