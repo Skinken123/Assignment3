@@ -6,6 +6,8 @@ Author
 Fadil Galjic
 ****************************************************************/
 import static java.lang.System.out;
+
+import java.util.Arrays;
 class NumberSequenceTest
 {
     public static void main (String[] args)
@@ -45,8 +47,10 @@ class NumberSequenceTest
         out.println(sequence.toString());
         out.println();
 
+        String s = Arrays.toString(sequence.asArray());
+        s = s.replaceAll(", ", " ").replaceAll("[\\[\\]]","");
         out.println("corresponding array:");
-        System.out.println(sequence);
+        System.out.println(s);
     }
 }
 

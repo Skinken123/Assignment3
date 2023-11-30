@@ -28,14 +28,13 @@ public class ArrayNumberSequence implements NumberSequence
     // length returns the number of numbers in this sequence.
     public int length ()
     {
-        int length = numbers.length;
-        return length;
+        return numbers.length;
     }
 
     // upperBound returns an upper bound for this sequence.
     public double upperBound ()
     {
-        double biggestNumber = 0;
+        double biggestNumber = numbers[0];
 
         for (double d : numbers) 
         {
@@ -79,7 +78,7 @@ public class ArrayNumberSequence implements NumberSequence
     public int positionOf (double number)
     {
         boolean foundNumber = true;
-        int position = 0;
+        int position = -1;
         int position2 = 0;
 
         while (foundNumber && position< numbers.length) 
@@ -91,10 +90,6 @@ public class ArrayNumberSequence implements NumberSequence
                     position = position2;
                     foundNumber = false;
                     break;
-                }
-                else
-                {
-                  position = -1;  
                 }
                 position2++;
             }
@@ -229,7 +224,6 @@ public class ArrayNumberSequence implements NumberSequence
         for (int i = 0; i < numbers.length; i++)
         {
             s = s + numbers[i] + ", ";
-          //  s = s + numbers[numbers.length - 1];
         }
         s2 = s.substring(0,s.length()-2);
         return s2;

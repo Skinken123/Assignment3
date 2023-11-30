@@ -100,13 +100,7 @@ public class LinkedNumberSequence implements NumberSequence
     public double numberAt (int position) throws IndexOutOfBoundsException
     {
         Node n = first;
-        int length = 0;
-        while (n != null) 
-        {
-            length++;
-            n = n.next;
-        }
-        if ((position < 0) || (length <= position))
+        if ((position < 0) || (length() <= position))
         {
             throw new IndexOutOfBoundsException("This position does not exist in this sequence");
         }
@@ -214,7 +208,6 @@ public class LinkedNumberSequence implements NumberSequence
             }
             n.next = newValue;
         }
-        
     }
 
     // insert inserts the given number at the specified position in this sequence.
@@ -222,13 +215,7 @@ public class LinkedNumberSequence implements NumberSequence
     public void insert (int position, double number) throws IndexOutOfBoundsException
     {
         Node n = first;
-        int length = 0;
-        while (n != null) 
-        {
-            length++;
-            n = n.next;
-        }
-        if ((position < 0) || (length <= position))
+        if ((position < 0) || (length() <= position))
         {
             throw new IndexOutOfBoundsException("This position does not exist in this sequence");
         }
@@ -261,13 +248,7 @@ public class LinkedNumberSequence implements NumberSequence
             throw new IllegalStateException("Sequence is null");
         }
         Node n = first;
-        int length = 0;
-        while (n != null) 
-        {
-            length++;
-            n = n.next;
-        }
-        if ((position < 0) || (length <= position))
+        if ((position < 0) || (length() <= position))
         {
             throw new IndexOutOfBoundsException("This position does not exist in this sequence");
         }
@@ -291,16 +272,10 @@ public class LinkedNumberSequence implements NumberSequence
     public double[] asArray ()
     {
         Node n = first;
-        int length = 0;
-        while (n != null) 
-        {
-            length++;
-            n = n.next;
-        }
-        double[] array = new double[length];
+        double[] array = new double[length()];
         n = first;
         int i = 0;
-        while (n.next != null)
+        while (n != null)
         {
             array[i] = n.number;
             n = n.next;
