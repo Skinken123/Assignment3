@@ -108,7 +108,7 @@ public class LinkedNumberSequence implements NumberSequence
         n = first;
         int currentPosition = 0;
         double posNumber = 0;
-        while (n.next != null)
+        while (n != null)
         {
             if (currentPosition == position)
             {
@@ -128,7 +128,7 @@ public class LinkedNumberSequence implements NumberSequence
         Node n = first;
         int returnPos = -1;
         int currentPosition = 0;
-        while (n.next != null)
+        while (n != null)
         {
             if (n.number == number)
             {
@@ -179,7 +179,7 @@ public class LinkedNumberSequence implements NumberSequence
     {
         boolean contains = false;
         Node n = first;
-        while (n.next != null)
+        while (n != null)
         {
             if (n.number == number)
             {
@@ -243,9 +243,9 @@ public class LinkedNumberSequence implements NumberSequence
     // The method throws IllegalStateException if there are just two numbers in the sequence.
     public void removeAt (int position) throws IndexOutOfBoundsException, IllegalStateException
     {
-        if (first == null)
+        if (length()<3)
         {
-            throw new IllegalStateException("Sequence is null");
+            throw new IllegalStateException("Sequence is to short");
         }
         Node n = first;
         if ((position < 0) || (length() <= position))
@@ -260,7 +260,7 @@ public class LinkedNumberSequence implements NumberSequence
         else
         {
             n = first;
-            for (int i = 1; i <= position-1 && n != null; i++)
+            for (int i = 1; i <= position-1; i++)
             {
                 n = n.next;
             }

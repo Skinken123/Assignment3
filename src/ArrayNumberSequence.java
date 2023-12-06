@@ -77,21 +77,14 @@ public class ArrayNumberSequence implements NumberSequence
     // If the number is not present in the sequence, -1 is returned.
     public int positionOf (double number)
     {
-        boolean foundNumber = true;
         int position = -1;
-        int position2 = 0;
-
-        while (foundNumber && position< numbers.length) 
+        
+        for (int i = 0; i<numbers.length; i++) 
         {
-            for (double d : numbers) 
+            if (numbers[i] == number)
             {
-                if (d == number)
-                {
-                    position = position2;
-                    foundNumber = false;
-                    break;
-                }
-                position2++;
+                position = i;
+                break;
             }
         }
         return position;
@@ -102,15 +95,12 @@ public class ArrayNumberSequence implements NumberSequence
     {
         boolean isIncrease = true;
 
-        while (isIncrease) 
+        for (int i = 0; i < numbers.length; i++)
         {
-            for (int i = 0; i < numbers.length; i++)
+            if (numbers[i]>=numbers[i+1])
             {
-                if (numbers[i]>numbers[i+1])
-                {
-                    isIncrease = false;
-                    break;
-                }
+                isIncrease = false;
+                break;
             }
         }
         return isIncrease;   
@@ -121,15 +111,12 @@ public class ArrayNumberSequence implements NumberSequence
     {
         boolean isDecrease = true;
 
-        while (isDecrease) 
+        for (int i = 0; i < numbers.length; i++)
         {
-            for (int i = 0; i < numbers.length; i++)
+            if (numbers[i]<=numbers[i+1])
             {
-                if (numbers[i]<numbers[i+1])
-                {
-                    isDecrease = false;
-                    break;
-                }
+                isDecrease = false;
+                break;
             }
         }
         return isDecrease;   
